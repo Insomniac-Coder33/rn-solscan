@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "expo-router";
 import {
     View,
     Text,
@@ -69,6 +70,7 @@ export default function WalletScreen() {
     const [balance, setBalance] = useState<number | null>(null);
     const [tokens, setTokens] = useState<any[]>([]);
     const [txns, setTxns] = useState<any[]>([]);
+    const router = useRouter();
 
     const search = async () => {
         const addr = address.trim();
@@ -151,10 +153,12 @@ export default function WalletScreen() {
                         keyExtractor={(t) => t.mint}
                         scrollEnabled={false}
                         renderItem={({ item }) => (
-                            <View style={s.row}>
+                            <TouchableOpacity onPress={() =>
+                                router.push(`/token/${item.mint}`)
+                            } style={s.row}>
                                 <Text style={s.mint}>{short(item.mint, 6)}</Text>
                                 <Text style={s.amount}>{item.amount}</Text>
-                            </View>
+                            </TouchableOpacity>
                         )}
                     />
                 </>
