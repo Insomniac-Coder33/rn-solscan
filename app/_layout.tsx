@@ -2,6 +2,7 @@
 // root layout - wraps entire app with providers
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import "../src/polyfills";
 
 export default function RootLayout() {
   return (
